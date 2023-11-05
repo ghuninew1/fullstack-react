@@ -1,0 +1,174 @@
+* {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+body.hide-cpu .container.cpu,
+body.hide-mem .container.mem,
+body.hide-load .container.load,
+body.hide-responseTime .container.responseTime,
+body.hide-rps .container.rps,
+body.hide-statusCodes .container.statusCodes {
+    display: none;
+}
+
+h5 {
+    margin: 0;
+    color: #888;
+    font-size: 12px;
+}
+
+h6 {
+    margin: 0;
+}
+
+p {
+    font-size: 13px;
+    color: #888;
+}
+
+span {
+    cursor: pointer;
+    font-size: 15px;
+    margin-left: 5px;
+    padding: 3px 10px 4px 10px;
+}
+
+canvas {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+    display: flex !important;
+}
+
+.content {
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+}
+
+.active {
+    background: #7460e435;
+    color: #039d1d;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.stats-column {
+    align-items: start;
+    padding: 0;
+    font-size: 14px;
+    margin: 0;
+    position: absolute;
+}
+
+.container {
+    align-items: flex-start;
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.chart-container {
+    max-width: 100%;
+    height: 120px;
+    width: 100%;
+    margin-left: 50px;
+}
+
+.container.healthChecks {
+    height: 100%;
+}
+
+.health-check-row {
+    align-items: center;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.health-check-title-column {
+    display: inline;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.health-check-title-column h5 a {
+    color: #888;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.health-check-title-column h5 a:hover {
+    text-decoration: underline;
+}
+
+.health-check-status-container {
+    align-items: center;
+    border-radius: 0 4px 4px 0;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.health-check-status-container.ok {
+    background: #75d701;
+}
+
+.health-check-status-container.failed {
+    background: #e53a40;
+}
+
+.health-check-status-container h1 {
+    line-height: 2em;
+    font-size: 1.5em;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.footer {
+    text-align: center;
+    margin: 1rem;
+    font-size: 20px;
+}
+
+.span-controls {
+    margin-left: 10px;
+}
+
+.status-code {
+    margin-top: 2px;
+}
+
+.status-code:before {
+    display: inline;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.status-code-2xx:before {
+    background-color: #75d701;
+}
+
+.status-code-3xx:before {
+    background-color: #47b8e0;
+}
+
+.status-code-4xx:before {
+    background-color: #ffc952;
+}
+
+.status-code-5xx:before {
+    background-color: #e53a40;
+}
+
+#eventLoopStat{
+    display: inline;
+    position: absolute;
+}
