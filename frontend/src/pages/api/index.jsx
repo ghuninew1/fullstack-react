@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
-import {navLinks} from "../../component/navbar/navLinks";
+import { navLinks } from "../../component/navbar/navLinks";
 // import { useRef, useState } from "react";
-import { Container } from "react-bootstrap";
 // import 'chartjs-adapter-luxon';
 // import {
 //     Chart as ChartJS,
@@ -51,7 +50,7 @@ const Api = () => {
     // }, []);
 
     return (
-        <Container>
+        <div>
             <ul className="nav nav-tabs my-4">
                 {ApiLink &&
                     ApiLink.map((link) => (
@@ -70,7 +69,7 @@ const Api = () => {
                 <Outlet />
                 {/* <Chart ref={chartRef} type="line" data={chartData}  /> */}
             </div>
-        </Container>
+        </div>
     );
 };
 

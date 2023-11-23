@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { Button, Container, Form, InputGroup, Table } from "react-bootstrap";
 import GetData from "../../component/GetData";
 
 export default function Ping() {
@@ -13,7 +12,6 @@ export default function Ping() {
     const resetFileInput = () => {
         inputRef.current.value = null;
     };
-
 
     const dataResult = (items = []) => {
         if (items?.length > 1) {
@@ -39,7 +37,7 @@ export default function Ping() {
         }
     };
     // const ip = inputRef.current.value;
-    const {data} = getPingRe(isIp);
+    const { data } = getPingRe(isIp);
 
     const hendleSubmit = async (e) => {
         e.preventDefault();
@@ -48,7 +46,6 @@ export default function Ping() {
             setIsIp(ip);
             setDatas(data);
             setVisible(true);
-
         } else {
             const res = await getIp(ip);
             setDatas(res.data);
@@ -57,40 +54,36 @@ export default function Ping() {
     };
 
     return (
-        <Container>
-            <Form
+        <div>
+            <form
                 onSubmit={hendleSubmit}
                 className="d-flex flex-column justify-content-center align-items-center"
             >
-                <Form.Group className="mb-3">
-                    <InputGroup className="mb-3">
-                        <InputGroup.Text>{check ? "Ping" : "IP"}</InputGroup.Text>
+                <div className="mb-3">
+                    <div className="mb-3">
+                        <div>{check ? "Ping" : "IP"}</div>
 
-                        <Form.Control
+                        <input
                             type="text"
                             name="ip"
                             placeholder="Ip"
                             aria-label="Ip"
                             ref={inputRef}
                         />
-                        <Button
-                            variant="outline-secondary"
-                            onClick={resetFileInput}
-                            className="btn-sm"
-                        />
+                        <button onClick={resetFileInput} className="btn-sm" />
 
-                        <Button variant="outline-info" type="submit" className="btn-sm">
+                        <button type="submit" className="btn-sm">
                             Submit
-                        </Button>
-                    </InputGroup>
-                </Form.Group>
+                        </button>
+                    </div>
+                </div>
 
-                <Form.Group className="ms-3 mb-3 input-group justify-content-center align-items-center">
-                    <Form.Check type="checkbox" onChange={() => setCheck(!check)} />
+                <div className="ms-3 mb-3 input-group justify-content-center align-items-center">
+                    <input type="checkbox" onChange={() => setCheck(!check)} />
                     <div className="vr mx-2" />
-                </Form.Group>
-            </Form>
-            <Table striped bordered hover variant="" hidden={!visible} className="table-responsive">
+                </div>
+            </form>
+            <table hidden={!visible} className="table-responsive">
                 <thead>
                     {datas?.length > 1 ? (
                         <tr>
@@ -110,7 +103,7 @@ export default function Ping() {
                     )}
                 </thead>
                 <tbody>{datas && dataResult(datas)}</tbody>
-            </Table>
-        </Container>
+            </table>
+        </div>
     );
 }

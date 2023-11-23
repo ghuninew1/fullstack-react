@@ -1,35 +1,32 @@
 {
-  "name": "@ghuninew1/react-test",
-  "private": true,
-  "version": "1.2.1",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "dev2": "bunx --bun vite",
-    "build": "bunx --bun vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "axios": "^1.5.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0",
-    "swr": "^2.2.4"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.28",
-    "@types/react-dom": "^18.2.13",
-    "@vitejs/plugin-react-swc": "^3.4.0",
-    "bootstrap": "5.3.2",
-    "eslint": "^8.51.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
-    "framer-motion": "^10.16.4",
-    "prop-types": "^15.8.1",
-    "react-bootstrap": "^2.9.0",
-    "socket.io-client": "^4.7.2",
-    "vite": "^4.4.11"
-  }
+    "name": "@ghuninew1/react-test",
+    "private": true,
+    "version": "1.2.1",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "dev2": "bunx --bun vite",
+        "build": "bunx --bun vite build",
+        "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "axios": "^1.5.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.16.0",
+        "swr": "^2.2.4"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.28",
+        "@types/react-dom": "^18.2.13",
+        "@vitejs/plugin-react": "^4.1.1",
+        "eslint": "^8.51.0",
+        "eslint-plugin-react": "^7.33.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.3",
+        "prop-types": "^15.8.1",
+        "socket.io-client": "^4.7.2",
+        "vite": "^4.5.0"
+    }
 }

@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { Button, Container, Form, InputGroup, ProgressBar } from "react-bootstrap";
 import GetData from "../../component/GetData";
 
 const Upload = () => {
@@ -10,7 +9,7 @@ const Upload = () => {
     const [upload, setUpload] = useState("");
 
     const inputRef = useRef(null);
-    const {uploadData} = GetData();
+    const { uploadData } = GetData();
 
     const resetFileInput = () => {
         inputRef.current.value = null;
@@ -44,17 +43,22 @@ const Upload = () => {
     };
 
     return (
-        <Container className="text-center vh-50 d-flex align-items-center justify-content-center">
-            <Form className="w-50" onSubmit={onSubmit}>
+        <div className="text-center vh-50 d-flex align-items-center justify-content-center">
+            <form className="w-50" onSubmit={onSubmit}>
                 {files && files.length > 0 && (
-                    <Form.Label>
+                    <div>
                         <h3>File Details:</h3>
                         {files[0].name && <p>File Name: {files[0].name} </p>}
                         {files[0].type && <p>File Type: {files[0].type} </p>}
                         {files[0].lastModifiedDate && (
-                            <p>File Last Modified: {files[0].lastModifiedDate.toDateString()} </p>
+                            <p>
+                                File Last Modified:{" "}
+                                {files[0].lastModifiedDate.toDateString()}{" "}
+                            </p>
                         )}
-                        {files[0].size && <p>File Size: {files[0].size / 1000} KB</p>}
+                        {files[0].size && (
+                            <p>File Size: {files[0].size / 1000} KB</p>
+                        )}
                         {files[0].type.includes("image") && (
                             <img
                                 src={URL.createObjectURL(files[0])}
@@ -62,22 +66,22 @@ const Upload = () => {
                                 style={{ width: "200px", height: "auto" }}
                             />
                         )}
-                    </Form.Label>
+                    </div>
                 )}
-                <Form.Group controlId="formFile" className="mb-3">
-                    <Form.Label>{upload}</Form.Label>
-                    <InputGroup className="mb-3">
-                        <InputGroup.Text>Name</InputGroup.Text>
-                        <Form.Control
+                <div controlId="formFile" className="mb-3">
+                    <div>{upload}</div>
+                    <div className="mb-3">
+                        <div>Name</div>
+                        <input
                             type="text"
                             placeholder="Name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
-                    </InputGroup>
-                    <InputGroup className="mb-3">
-                        <InputGroup.Text>Upload</InputGroup.Text>
-                        <Form.Control
+                    </div>
+                    <div className="mb-3">
+                        <div>Upload</div>
+                        <input
                             type="file"
                             name="file"
                             className="form-control"
@@ -87,13 +91,16 @@ const Upload = () => {
                             ref={inputRef}
                             onChange={(e) => setFiles(e.target.files)}
                         />
-                        <Button variant="outline-secondary" onClick={resetFileInput}>
+                        <button
+                            variant="outline-secondary"
+                            onClick={resetFileInput}
+                        >
                             Clear
-                        </Button>
-                    </InputGroup>
-                    <Button variant="outline-success" type="submit">
+                        </button>
+                    </div>
+                    <button variant="outline-success" type="submit">
                         Submit
-                    </Button>
+                    </button>
                     <br />
                     <ProgressBar
                         max="100"
@@ -102,9 +109,9 @@ const Upload = () => {
                         label={`${uploadPercentage}%`}
                         variant="success"
                     />
-                </Form.Group>
-            </Form>
-        </Container>
+                </div>
+            </form>
+        </div>
     );
 };
 

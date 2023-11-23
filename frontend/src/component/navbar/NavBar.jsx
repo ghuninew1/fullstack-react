@@ -1,4 +1,3 @@
-import { Navbar, Dropdown, NavItem } from "react-bootstrap";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { UseTheme, UseUser } from "../../store/DataContext";
@@ -38,8 +37,8 @@ const NavBar = () => {
 
     return (
         <>
-            <Navbar expand="md" className={`border-bottom ${theme}`}>
-                <Navbar.Brand className="mx-2">
+            <nav className={`border-bottom ${theme}`}>
+                <div className="mx-2">
                     <Link to="/" className={`rounded-circle`}>
                         <img
                             src=" https://avatars.githubusercontent.com/u/77183125?s=200&v=4"
@@ -49,9 +48,9 @@ const NavBar = () => {
                             className="rounded-circle"
                         />
                     </Link>
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" className="mx-2" />
-                <Navbar.Collapse className={"justify-content-end mx-2"}>
+                </div>
+                <div className="mx-2" />
+                <div className={"justify-content-end mx-2"}>
                     {LinksMain &&
                         LinksMain.map((link) => (
                             <NavLink
@@ -64,12 +63,12 @@ const NavBar = () => {
                             </NavLink>
                         ))}
 
-                    <NavItem className="text-center">
+                    <div className="text-center">
                         <button
                             className={`bg-theme-${theme} rounded-circle mx-2 item-center btn btn-sm btn-outline-${theme}`}
                             onClick={handleThemes}
                         />
-                    </NavItem>
+                    </div>
 
                     {!hidden ? (
                         LoginLink.map((link) => (
@@ -77,14 +76,16 @@ const NavBar = () => {
                                 key={link.name}
                                 to={link.to}
                                 end={link.to === "/" ? true : false}
-                                className={"btn btn-outline-info mx-1 py-1 px-2 my-1"}
+                                className={
+                                    "btn btn-outline-info mx-1 py-1 px-2 my-1"
+                                }
                             >
                                 {link.name && link.name}
                             </NavLink>
                         ))
                     ) : (
-                        <Dropdown className="mx-0">
-                            <Dropdown.Toggle variant="" className={`rounded-circle w-100`}>
+                        <div className="mx-0">
+                            <div className={`rounded-circle w-100`}>
                                 <img
                                     src="https://avatars.githubusercontent.com/u/77183125?s=200&v=4"
                                     alt="mdo"
@@ -92,26 +93,31 @@ const NavBar = () => {
                                     height="32"
                                     className="rounded-circle"
                                 />
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu className="dropdown-menu-end text-center w-100">
+                            </div>
+                            <div className="dropdown-menu-end text-center w-100">
                                 {DropdownLink &&
                                     DropdownLink.map((link) => (
                                         <NavLink
                                             key={link.name}
                                             to={link.to}
-                                            className={"dropdown-item text-decoration-none"}
+                                            className={
+                                                "dropdown-item text-decoration-none"
+                                            }
                                         >
                                             {link.name}
                                         </NavLink>
                                     ))}
-                                <Dropdown.Item className={"dropdown-item"} onClick={handleLogout}>
+                                <div
+                                    className={"dropdown-item"}
+                                    onClick={handleLogout}
+                                >
                                     Logout
-                                </Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
+                                </div>
+                            </div>
+                        </div>
                     )}
-                </Navbar.Collapse>
-            </Navbar>
+                </div>
+            </nav>
         </>
     );
 };

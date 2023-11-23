@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Table, Button, Container } from "react-bootstrap";
 import GetData from "../../component/GetData";
 import {
     ToLocalTime,
@@ -14,7 +13,7 @@ import { Link } from "react-router-dom";
 const GetApi = () => {
     const [datas, setDatas] = useState([]);
     const [message, setMessage] = useState("");
-    const {getAllDataRe,removeData} = GetData();
+    const { getAllDataRe, removeData } = GetData();
     const { data } = getAllDataRe();
 
     useEffect(() => {
@@ -37,36 +36,42 @@ const GetApi = () => {
 
     const dataValue = (items = []) => {
         if (IsDataArray(items) && items.length > 0) {
-            return items?.map((item,idx) => (
+            return items?.map((item, idx) => (
                 <tr key={item._id} className="align-middle">
-                    <td>{idx +1}</td>
+                    <td>{idx + 1}</td>
                     <td>{item.name}</td>
                     <td>{item.detail}</td>
                     <td>{item.price}</td>
                     {item.file && (
-                    <td id="preview-img" className="text-center">
-                        <Image
-                            src={import.meta.env.VITE_API_URL + "/uploads/" + (item?.file &&  item.file)}
-                            alt={item.name}
-                        />
-                    </td>
+                        <td id="preview-img" className="text-center">
+                            <Image
+                                src={
+                                    import.meta.env.VITE_API_URL +
+                                    "/uploads/" +
+                                    (item?.file && item.file)
+                                }
+                                alt={item.name}
+                            />
+                        </td>
                     )}
                     <td>{ToLocalTime(item.updatedAt)}</td>
                     <td>{ToLocalTime(item.createdAt)}</td>
                     <td className="text-center btn-btn-group-vertical">
                         <span className="btn-group">
-                            <Button className="btn-warning">
+                            <button className="btn-warning">
                                 <Link
                                     to={"/api/edit/" + item._id}
                                     className="text-decoration-none text-dark"
                                 >
                                     Edit
                                 </Link>
-                            </Button>
-                            <Button className="btn-danger"
-                            onClick={() => handleDelete(item._id)}>
+                            </button>
+                            <button
+                                className="btn-danger"
+                                onClick={() => handleDelete(item._id)}
+                            >
                                 Del
-                            </Button>
+                            </button>
                         </span>
                     </td>
                 </tr>
@@ -74,14 +79,17 @@ const GetApi = () => {
         }
     };
     return (
-        <Container>
+        <div>
             {ShowSuccess(message)}
-            <Button variant="outline-info" className="float-end">
-                <Link to="/api/create" className="text-decoration-none text-info">
+            <button variant="outline-info" className="float-end">
+                <Link
+                    to="/api/create"
+                    className="text-decoration-none text-info"
+                >
                     Create
                 </Link>
-            </Button>
-            <Table striped bordered hover variant="" hidden={false}>
+            </button>
+            <table hidden={false}>
                 <thead>
                     {datas && (
                         <tr>
@@ -105,8 +113,8 @@ const GetApi = () => {
                         </tr>
                     )}
                 </tbody>
-            </Table>
-        </Container>
+            </table>
+        </div>
     );
 };
 

@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { Button, Container, Form, InputGroup, ProgressBar } from "react-bootstrap";
 import GetData from "../../component/GetData";
 import { useNavigate, useParams } from "react-router-dom";
 import { Image, ShowSuccess } from "../../component/utils";
@@ -15,15 +14,15 @@ const Edit = () => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const { id } = useParams();
-    const { getOne, updateData } = GetData()
-    
+    const { getOne, updateData } = GetData();
+
     useEffect(() => {
         if (id) {
-            const getData = async ({ids}) => {
+            const getData = async ({ ids }) => {
                 const res = await getOne(ids);
                 setData(res.data);
             };
-            getData({ids:id});
+            getData({ ids: id });
         }
     }, [getOne, id]);
 
@@ -71,47 +70,47 @@ const Edit = () => {
     };
 
     return (
-        <Container>
+        <div>
             {ShowSuccess(upload)}
-            <Form
+            <form
                 onSubmit={hendleSubmit}
                 className="form-group w-50 mx-auto my-5 border border-2 p-5 rounded-3"
             >
-                <Form.Group className="form-group">
-                    <InputGroup className="form-group mb-3">
-                        <InputGroup.Text>name</InputGroup.Text>
+                <div className="form-group">
+                    <div className="form-group mb-3">
+                        <div>name</div>
 
-                        <Form.Control
+                        <input
                             type="text"
                             name="name"
                             placeholder="name"
                             ref={nameRef}
                             defaultValue={data.name}
                         />
-                    </InputGroup>
-                    <InputGroup className="form-group-input mb-3">
-                        <InputGroup.Text>detail</InputGroup.Text>
-                        <Form.Control
+                    </div>
+                    <div className="form-group-input mb-3">
+                        <div>detail</div>
+                        <input
                             type="text"
                             name="detail"
                             placeholder="detail"
                             ref={detailRef}
                             defaultValue={data.detail}
                         />
-                    </InputGroup>
-                    <InputGroup className="form-group-input mb-3">
-                        <InputGroup.Text>price</InputGroup.Text>
-                        <Form.Control
+                    </div>
+                    <div className="form-group-input mb-3">
+                        <div>price</div>
+                        <input
                             type="number"
                             name="price"
                             placeholder="price"
                             ref={priceRef}
                             defaultValue={data.price}
                         />
-                    </InputGroup>
-                    <InputGroup className="form-group-input mb-3">
-                        <InputGroup.Text>File</InputGroup.Text>
-                        <Form.Control
+                    </div>
+                    <div className="form-group-input mb-3">
+                        <div>File</div>
+                        <input
                             type="file"
                             name="file"
                             placeholder="file"
@@ -125,7 +124,9 @@ const Edit = () => {
                                 if (file) {
                                     const size = file.size / 1024 / 1024;
                                     if (size > 1) {
-                                        alert("file size must be less than 1 MB");
+                                        alert(
+                                            "file size must be less than 1 MB"
+                                        );
                                         fileRef.current.value = null;
                                         setCheck(false);
                                     }
@@ -134,49 +135,61 @@ const Edit = () => {
                                 }
                             }}
                         />
-                        <Button variant="outline-secondary" onClick={resetFileInput} />
-                    </InputGroup>
-                    <InputGroup className="form-group-input mb-3">
-                        <Button variant="warning" onClick={() => navigate("/api/get")} className="btn-group w-50 form-control">
+                        <button onClick={resetFileInput} />
+                    </div>
+                    <div className="form-group-input mb-3">
+                        <button
+                            onClick={() => navigate("/api/get")}
+                            className="btn-group w-50 form-control"
+                        >
                             Back
-                        </Button>
-                        <Button variant="success" 
-                        type="submit" className="btn-group w-50 form-control d-flex justify-content-end">
+                        </button>
+                        <button
+                            type="submit"
+                            className="btn-group w-50 form-control d-flex justify-content-end"
+                        >
                             Submit
-                        </Button>
-                    </InputGroup>
-                </Form.Group>
+                        </button>
+                    </div>
+                </div>
 
                 {data.file && (
-                <Form.Group  id="preview-img" className="form-group form-text text-center">
-                    {check ? (
-                        <Image
-                            src={URL.createObjectURL(fileRef.current.files[0])}
-                            alt="preview"
-                        />
-                    ) : (
-                        <Image
-                            src={import.meta.env.VITE_API_URL + "/uploads/" + data?.file}
-                            alt={data.name}
-                        />
-                    )}
-
-                    {check && (
-                            <div>
-                            <Form.Label>{upload}</Form.Label>
-                            <ProgressBar
-                                max="100"
-                                now={uploadPercentage}
-                                hidden={!check}
-                                label={`${uploadPercentage}%`}
-                                variant="success"
+                    <div
+                        id="preview-img"
+                        className="form-group form-text text-center"
+                    >
+                        {check ? (
+                            <Image
+                                src={URL.createObjectURL(
+                                    fileRef.current.files[0]
+                                )}
+                                alt="preview"
                             />
-                        </div>
-                    )}
-                </Form.Group>
+                        ) : (
+                            <Image
+                                src={
+                                    import.meta.env.VITE_API_URL +
+                                    "/uploads/" +
+                                    data?.file
+                                }
+                                alt={data.name}
+                            />
+                        )}
+
+                        {check && (
+                            <div>
+                                <Form.Label>{upload}</Form.Label>
+                                <progress
+                                    max="100"
+                                    value={uploadPercentage}
+                                    hidden={!check}
+                                />
+                            </div>
+                        )}
+                    </div>
                 )}
-            </Form>
-        </Container>
+            </form>
+        </div>
     );
 };
 

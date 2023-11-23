@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { Table, Button, Form, Container } from "react-bootstrap";
 import GetData from "../../component/GetData";
 import {
     ToLocalTime,
@@ -16,7 +15,7 @@ const Crud = () => {
     const [message, setMessage] = useState("");
     const [isEdit, setIsEdit] = useState(null);
     const fileRef = useRef(null);
-    const {getAllDataRe,removeData} = GetData();
+    const { getAllDataRe, removeData } = GetData();
     const { data } = getAllDataRe();
 
     useEffect(() => {
@@ -58,7 +57,7 @@ const Crud = () => {
                         {isEdit !== item._id ? (
                             item.name
                         ) : (
-                            <Form.Control
+                            <input
                                 type="text"
                                 name="name"
                                 placeholder="name"
@@ -70,7 +69,7 @@ const Crud = () => {
                         {isEdit !== item._id ? (
                             item.detail
                         ) : (
-                            <Form.Control
+                            <input
                                 type="text"
                                 name="detail"
                                 placeholder="detail"
@@ -82,7 +81,7 @@ const Crud = () => {
                         {isEdit !== item._id ? (
                             item.price
                         ) : (
-                            <Form.Control
+                            <input
                                 type="number"
                                 name="price"
                                 placeholder="price"
@@ -94,13 +93,17 @@ const Crud = () => {
                         {isEdit !== item._id ? (
                             <>
                                 <Image
-                                    src={import.meta.env.VITE_API_URL + "/uploads/" + item?.file}
+                                    src={
+                                        import.meta.env.VITE_API_URL +
+                                        "/uploads/" +
+                                        item?.file
+                                    }
                                     alt={item.name}
                                 />
                             </>
                         ) : (
                             <span>
-                                <Form.Control
+                                <input
                                     type="file"
                                     name="file"
                                     placeholder="file"
@@ -110,7 +113,9 @@ const Crud = () => {
                                     src={
                                         fileRef.current
                                             ? fileRef.current.files[0] &&
-                                              URL.createObjectURL(fileRef.current.files[0])
+                                              URL.createObjectURL(
+                                                  fileRef.current.files[0]
+                                              )
                                             : import.meta.env.VITE_API_URL +
                                               "/uploads/" +
                                               item?.file
@@ -126,32 +131,35 @@ const Crud = () => {
                     <td className="text-center btn-btn-group-vertical">
                         <span className="btn-group">
                             {isEdit === item._id ? (
-                                <Button className="btn-primary btn-group-sm" onClick={handleSubmit}>
+                                <button
+                                    className="btn-primary btn-group-sm"
+                                    onClick={handleSubmit}
+                                >
                                     Save
-                                </Button>
+                                </button>
                             ) : (
-                                <Button
+                                <button
                                     className="btn-warning btn-group-sm"
                                     onClick={() => setIsEdit(item._id)}
                                 >
                                     Edit
-                                </Button>
+                                </button>
                             )}
 
                             {isEdit === item._id ? (
-                                <Button
+                                <button
                                     className="btn-secondary btn-group-sm"
                                     onClick={() => setIsEdit(null)}
                                 >
                                     Cancel
-                                </Button>
+                                </button>
                             ) : (
-                                <Button
+                                <button
                                     className="btn-danger btn-group-sm"
                                     onClick={() => handleDelete(item._id)}
                                 >
                                     Del
-                                </Button>
+                                </button>
                             )}
                         </span>
                     </td>
@@ -160,14 +168,17 @@ const Crud = () => {
         }
     };
     return (
-        <Container>
+        <div>
             {ShowSuccess(message)}
-            <Button variant="info" className="float-end">
-                <Link to="/api/create" className="text-decoration-none text-dark">
+            <button variant="info" className="float-end">
+                <Link
+                    to="/api/create"
+                    className="text-decoration-none text-dark"
+                >
                     Create
                 </Link>
-            </Button>
-            <Table striped bordered hover variant="" hidden={false} className="align-middle">
+            </button>
+            <table hidden={false} className="align-middle">
                 <thead>
                     {datas && (
                         <tr>
@@ -191,8 +202,8 @@ const Crud = () => {
                         </tr>
                     )}
                 </tbody>
-            </Table>
-        </Container>
+            </table>
+        </div>
     );
 };
 

@@ -6,7 +6,6 @@ import About from "./pages/about/About.jsx";
 import Ping from "./pages/ping/Ping.jsx";
 import Upload from "./pages/api/Upload.jsx";
 import Register from "./pages/login/Register.jsx";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Profile from "./pages/login/Profile.jsx";
 import Layout from "./component/Layout.jsx";
 import Api from "./pages/api/index.jsx";
@@ -64,8 +63,7 @@ const App = () => {
                         },
                         {
                             path: "status",
-                            element: 
-                            <Status />
+                            element: <Status />,
                         },
                         {
                             path: "upload",

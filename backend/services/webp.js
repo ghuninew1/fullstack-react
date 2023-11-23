@@ -15,7 +15,9 @@ let imgs = [];
 
 const convertToWebp = async (img, index, mode) => {
     // Define the name of the new WebP file
-    const imgName = nPattern ? `${nPattern} ${index && index}` : path.parse(img).name;
+    const imgName = nPattern
+        ? `${nPattern} ${index && index}`
+        : path.parse(img).name;
     const outputFolder = () => {
         if (mode === "webp") {
             return `${OUTPUT_DIR}/webp`;
@@ -61,7 +63,6 @@ const convertToWebp = async (img, index, mode) => {
     } else if (mode === "gif") {
         await sharp(`${INPUT_DIR}/${img}`, { animated: true })
             .gif({ interFrameMaxError: 8 })
-            .resize({ width: 300, height: 300 })
             .toFile(outputFolder() + `/${imgName}.gif`);
     } else {
         throw new Error("Mode is undefined");
@@ -70,12 +71,12 @@ const convertToWebp = async (img, index, mode) => {
 // Read the input directory and filter for image files (PNG, JPG, JPEG)
 fs.readdir(INPUT_DIR, (err, files) => {
     if (err) console.log("Error reading input directory: ", err);
-    // Filter for image files
+
     imgs = files.filter((file) => {
         const ext = path.extname(file).toLowerCase();
         return ext;
     });
-    // For each image file found, call the convertToWebp function
+
     imgs.forEach((img, i) =>
         convertToWebp(img, i, "webp")
             .then(() => console.log("Done! ", i))

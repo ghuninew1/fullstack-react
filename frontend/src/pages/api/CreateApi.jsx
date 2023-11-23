@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { Button, Container, Form, InputGroup, ProgressBar } from "react-bootstrap";
 import GetData from "../../component/GetData";
 import { useNavigate } from "react-router-dom";
 import { Image, ShowSuccess } from "../../component/utils";
@@ -13,7 +12,7 @@ const CreateApi = () => {
     const [uploadPercentage, setUploadPercentage] = useState(0);
     const [upload, setUpload] = useState("");
     const navigate = useNavigate();
-    const {createData} = GetData();
+    const { createData } = GetData();
 
     const resetFileInput = (e) => {
         e.preventDefault();
@@ -59,39 +58,44 @@ const CreateApi = () => {
     };
 
     return (
-        <Container>
+        <div>
             {ShowSuccess(upload)}
-            <Form
+            <form
                 onSubmit={hendleSubmit}
                 className="form-group w-50 mx-auto my-5 border border-2 p-5 rounded-3"
             >
-                <Form.Group className="form-group">
-                    <InputGroup className="form-group mb-3">
-                        <InputGroup.Text>name</InputGroup.Text>
+                <div className="form-group">
+                    <div className="form-group mb-3">
+                        <div>name</div>
 
-                        <Form.Control type="text" name="name" placeholder="name" ref={nameRef} />
-                    </InputGroup>
-                    <InputGroup className="form-group-input mb-3">
-                        <InputGroup.Text>detail</InputGroup.Text>
-                        <Form.Control
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="name"
+                            ref={nameRef}
+                        />
+                    </div>
+                    <div className="form-group-input mb-3">
+                        <div>detail</div>
+                        <input
                             type="text"
                             name="detail"
                             placeholder="detail"
                             ref={detailRef}
                         />
-                    </InputGroup>
-                    <InputGroup className="form-group-input mb-3">
-                        <InputGroup.Text>price</InputGroup.Text>
-                        <Form.Control
+                    </div>
+                    <div className="form-group-input mb-3">
+                        <div>price</div>
+                        <input
                             type="number"
                             name="price"
                             placeholder="price"
                             ref={priceRef}
                         />
-                    </InputGroup>
-                    <InputGroup className="form-group-input mb-3">
-                        <InputGroup.Text>File</InputGroup.Text>
-                        <Form.Control
+                    </div>
+                    <div className="form-group-input mb-3">
+                        <div>File</div>
+                        <input
                             type="file"
                             name="file"
                             placeholder="file"
@@ -104,46 +108,48 @@ const CreateApi = () => {
                                 }
                             }}
                         />
-                        <Button variant="secondary" onClick={resetFileInput} />
-                    </InputGroup>
-                    <InputGroup className="form-group-input mb-3">
-                        <Button
-                            variant="warning"
+                        <button onClick={resetFileInput} />
+                    </div>
+                    <div className="form-group-input mb-3">
+                        <button
                             onClick={() => navigate("/api/get")}
                             className="btn-group w-50 form-control"
                         >
                             Back
-                        </Button>
-                        <Button
-                            variant="success"
+                        </button>
+                        <button
                             type="submit"
                             className="btn-group w-50 form-control d-flex justify-content-end"
                         >
                             Submit
-                        </Button>
-                    </InputGroup>
-                </Form.Group>
+                        </button>
+                    </div>
+                </div>
 
-                <Form.Group className="form-group form-text text-center" id="preview-img">
+                <div
+                    className="form-group form-text text-center"
+                    id="preview-img"
+                >
                     {check && (
-                        <Image src={URL.createObjectURL(fileRef.current.files[0])} alt="preview" />
+                        <Image
+                            src={URL.createObjectURL(fileRef.current.files[0])}
+                            alt="preview"
+                        />
                     )}
 
                     {check && (
                         <div>
-                            <Form.Label>{upload}</Form.Label>
-                            <ProgressBar
+                            <div>{upload}</div>
+                            <progress
                                 max="100"
-                                now={uploadPercentage}
+                                value={uploadPercentage}
                                 hidden={!check}
-                                label={`${uploadPercentage}%`}
-                                variant="success"
                             />
                         </div>
                     )}
-                </Form.Group>
-            </Form>
-        </Container>
+                </div>
+            </form>
+        </div>
     );
 };
 

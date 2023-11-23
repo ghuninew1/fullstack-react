@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button, Container, Form, InputGroup, Table } from "react-bootstrap";
 import { IsDataObject, IsNumber } from "../../component/utils";
 import InputGroupText from "react-bootstrap/esm/InputGroupText";
 import CircularProgressBar from "../../component/CircularProgressBar";
@@ -25,10 +24,9 @@ export default function Status() {
                     <td>{value.host}</td>
                     <td>{IsNumber(value.time, 3)}</td>
                     <td>{value.output.split(" ")[27]}</td>
-
                 </tr>
             ));
-            return result 
+            return result;
         } else {
             return null;
         }
@@ -53,7 +51,7 @@ export default function Status() {
         });
         const nodeData = {};
         for (let i = 0; i < ips.length; i++) {
-            nodeData[i] = { ip: ips[i], int: ints[i]};
+            nodeData[i] = { ip: ips[i], int: ints[i] };
         }
 
         socket.connect();
@@ -104,51 +102,43 @@ export default function Status() {
     };
 
     return (
-        <Container>
-            <Form
+        <div>
+            <form
                 className="form-group w-50 mx-auto my-3 border border-2 p-3 rounded-3"
                 onSubmit={handleSubmit}
             >
-                <Form.Group className="btn-group btn-group-sm d-flex justify-content-between accordion mb-2">
-                    <Button onClick={addIp} className="btn-group-sm" variant="outline-info">
+                <div className="btn-group btn-group-sm d-flex justify-content-between accordion mb-2">
+                    <button onClick={addIp} className="btn-group-sm">
                         Add Ip
-                    </Button>
-                    <Button
-                        onClick={resetFileInput}
-                        className="btn-group-sm "
-                        variant="outline-danger"
-                    >
+                    </button>
+                    <button onClick={resetFileInput} className="btn-group-sm ">
                         reset{" "}
-                    </Button>
-                    <Button type="submit" className="btn-group-sm" variant="outline-success">
+                    </button>
+                    <button type="submit" className="btn-group-sm">
                         Submit
-                    </Button>
-                    <Button
-                        onClick={handleClose}
-                        className="btn-group-sm "
-                        variant="outline-warning"
-                    >
+                    </button>
+                    <button onClick={handleClose} className="btn-group-sm ">
                         Close
-                    </Button>
-                </Form.Group>
-                <Form.Group id="ipgroup">
-                    <InputGroup className="input-group-sm">
-                        <InputGroupText>int</InputGroupText>
-                        <Form.Control
+                    </button>
+                </div>
+                <div id="ipgroup">
+                    <div className="input-group-sm">
+                        <div>int</div>
+                        <input
                             type="number"
                             name="int"
                             placeholder="Interval"
                             className="form-group"
                             defaultValue={1}
                         />
-                        <InputGroupText>ip</InputGroupText>
+                        <div>ip</div>
 
-                        <Form.Control type="text" name="ip" placeholder="Ip" />
-                    </InputGroup>
-                </Form.Group>
-            </Form>
+                        <input type="text" name="ip" placeholder="Ip" />
+                    </div>
+                </div>
+            </form>
 
-            <Table striped bordered hover variant="" hidden={!visible} size="sm">
+            <table hidden={!visible}>
                 <thead>
                     {datas && (
                         <tr className="text-center align-middle">
@@ -157,14 +147,15 @@ export default function Status() {
                             <th>InputHost</th>
                             <th>Time (ms)</th>
                             <th>Output</th>
-
                         </tr>
                     )}
                 </thead>
-                <tbody className="text-center align-middle">{dataResult(datas)}</tbody>
-            </Table>
+                <tbody className="text-center align-middle">
+                    {dataResult(datas)}
+                </tbody>
+            </table>
             {visible && (
-                <Container className="text-center">
+                <div className="text-center">
                     {Object.values(datas).map((data) => (
                         <span key={data.id} className="mx-2">
                             <CircularProgressBar
@@ -178,8 +169,8 @@ export default function Status() {
                             />
                         </span>
                     ))}
-                </Container>
+                </div>
             )}
-        </Container>
+        </div>
     );
 }

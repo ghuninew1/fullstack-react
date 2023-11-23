@@ -1,4 +1,3 @@
-import { Alert } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 export const ToLocalDate = (date) => {
@@ -20,26 +19,29 @@ export const IsDataArray = (data) => {
 };
 
 export const IsDataObject = (data) => {
-    if (data !== null && data !== undefined && Object.keys(data).length > 0) return data;
+    if (data !== null && data !== undefined && Object.keys(data).length > 0)
+        return data;
 };
 
 export const IsDataObjectArray = (data) => {
-    if (data !== null && data !== undefined && data.length > 0 && Object.keys(data[0]).length > 0)
+    if (
+        data !== null &&
+        data !== undefined &&
+        data.length > 0 &&
+        Object.keys(data[0]).length > 0
+    )
         return data;
 };
 
 export const IsHidden = (data) => {
-    if (data === null || data === undefined || data === "") return data ? true : false;
+    if (data === null || data === undefined || data === "")
+        return data ? true : false;
 };
 export const OnMessage = (message) => {
     // setTimeout(() => {
     //     message.onClose();
     // } , 1000);
-    return (
-        <Alert variant={message.variant} onClose={message.onClose} dismissible>
-            {message.message}
-        </Alert>
-    );
+    return <div onClose={message.onClose}>{message.message}</div>;
 };
 
 export const Image = ({ src, alt, width, maxHeight }) => {
@@ -82,7 +84,7 @@ export const Image = ({ src, alt, width, maxHeight }) => {
     );
 };
 
-export const IsNumber = (data, tf=6) => {
+export const IsNumber = (data, tf = 6) => {
     if (data !== null && data !== undefined && data !== "" && !isNaN(data))
         return Number(data && data).toFixed(tf ? tf : 3);
 };
@@ -98,31 +100,19 @@ export const IsConfirm = (message) => {
 
 export const ShowEerror = (error) => {
     if (error) {
-        return (
-            <Alert variant="danger" onClose={() => {}} dismissible>
-                {error}
-            </Alert>
-        );
+        return <div onClose={() => {}}>{error}</div>;
     }
 };
 
 export const ShowLoading = (loading) => {
     if (loading) {
-        return (
-            <Alert variant="info" onClose={() => {}} dismissible>
-                Loading...
-            </Alert>
-        );
+        return <div onClose={() => {}}>Loading...</div>;
     }
 };
 
 export const ShowSuccess = (success) => {
     if (success) {
-        return (
-            <Alert variant="success" onClose={() => {}} dismissible>
-                Success... {success}
-            </Alert>
-        );
+        return <div onClose={() => {}}>Success... {success}</div>;
     }
 };
 export const ResTime = (start) => {
